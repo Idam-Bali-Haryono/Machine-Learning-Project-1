@@ -32,6 +32,19 @@ df_sample.reset_index(inplace=True, drop=True)
 ```
 A sample dataset (df_sample) has been created by randomly selecting 9,000 entries from the original dataset (df). This subset is then modified: the 'store' and 'item' columns are converted to strings, the 'date' column is transformed to datetime format, and the dataset is sorted chronologically based on the 'date' column. The resulting sample dataset is ready for further analysis.
 
+
+```python
+train = df_sample[df['date'] < '2017-01-01']
+test = df_sample[df['date'] >= '2017-01-01']
+
+train_features = train.drop(columns=['sales'])
+train_target = train['sales']
+test_features = test.drop(columns=['sales'])
+test_target = test['sales']
+```
+
+Here, we divides df_sample into training and testing sets based on a specified date threshold, creating separate sets of features (excluding the 'sales' column) and corresponding target variables for both training and testing datasets.
+
 #### Upgini
 ``` python
 %pip install -Uq upgini
@@ -49,7 +62,7 @@ enricher.fit(train_features,
              train_target,
              eval_set =  [(test_features, test_target)])
 ```
-The provided Python code utilizes the upgini library to create and train a FeaturesEnricher instance for time series data, with a specified search key for the "date" feature and specifying the data type as time series (CVType.time_series). After setting up the enricher, it fits the model using training features (train_features), training targets (train_target), and evaluation set ((test_features, test_target)). In this case, upgini enrich the data set with Nasdaq score, Crude Oil Price, Gold Price, Weather data, etc.
+Here, we utilizes the upgini library to create and train a FeaturesEnricher instance for time series data, with a specified search key for the "date" feature and specifying the data type as time series (CVType.time_series). After setting up the enricher, it fits the model using training features (train_features), training targets (train_target), and evaluation set ((test_features, test_target)). In this case, upgini enrich the data set with Nasdaq score, Crude Oil Price, Gold Price, Weather data, etc.
 ![upgini](https://github.com/Idam-Bali-Haryono/Machine-Learning-Project-1/assets/115137963/f9e30a22-9b4c-47a6-a2ce-47e20ea44428)
 
 
@@ -69,7 +82,7 @@ model = CatBoostRegressor(verbose=False, allow_writing_files=False, random_state
 ### Result
 To assess the impact of Upgini on the model, we are employing the differentiation in Mean Absolute Percentage Error (MAPE).
 ```python
-from catboost.utils import eval_metric
+
 enricher.calculate_metrics(
     train_features, train_target, eval_set=[(test_features, test_target)],
     estimator =  model,
@@ -90,4 +103,4 @@ Upon scrutinizing the tabulated results, a discernible enhancement in the predic
 
 ## Conclusion
 
-**This project exemplifies Upgini's prowess in enhancing machine learning-driven sales forecasting processes, showcasing a notable 7.5% improvement in Mean Absolute Percentage Error (MAPE), underscoring its impactful contributions to predictive accuracy and performance.**
+**This project exemplifies Upgini's prowess in enhancing machine learning-driven sales forecasting processes, _showcasing a notable 7.5% improvement in Mean Absolute Percentage Error (MAPE)_, underscoring its impactful contributions to predictive accuracy and performance.**
