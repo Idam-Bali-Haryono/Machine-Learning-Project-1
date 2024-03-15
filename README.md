@@ -3,23 +3,28 @@
 
 ![header](https://github.com/Idam-Bali-Haryono/Machine-Learning-Project-1/assets/115137963/6bd6a07d-5318-4b46-9a1f-e09d0aacd284) <img width="622" alt="logo" src="https://github.com/Idam-Bali-Haryono/Machine-Learning-Project-1/assets/115137963/dc533d1e-57a5-4e49-879c-7782efc1caa6"> ![catbooost](https://github.com/Idam-Bali-Haryono/Machine-Learning-Project-1/assets/115137963/0d6b7a07-064e-41fb-88db-81a706d44763)
 
+## Sumarry
+This project showcases Upgini's ability to enhance machine learning-based sales forecasting, yielding a notable **7.5%** improvement in model accuracy, thereby demonstrating its potential impact in streamlining predictive processes.
+
 
 ## Introduction
 
-**Upgini**, currently in its beta stage, introduces a powerful Python library and an intelligent data search engine tailored for elevating **machine learning** pipelines. This platform seamlessly integrates relevant features from diverse data sources, categorizing them into public, community-shared, and premium providers. Employing advanced techniques such as Large Language Models' data augmentation, RNNs, and GraphNN, Upgini ensures automated feature generation that transcends mere correlation, significantly improving machine learning model accuracy. With dynamic search key augmentation, accurate metric calculations, and a focus on addressing stability concerns in external data dependencies, Upgini empowers users to efficiently enrich and stabilize machine learning models.
+Before diving into the details of Upgini, it's essential to understand that machine learning, a branch of artificial intelligence, involves teaching computers to learn from data and make predictions or decisions without being explicitly programmed. Python, a popular programming language known for its simplicity and versatility, serves as the backbone for many machine learning projects, providing powerful libraries and tools for data analysis and model development.
 
-Leveraging Upgini's innovative capabilities becomes particularly impactful in enhancing sales prediction models. The platform's automated feature discovery and search key augmentation, including elements like postal codes, offer a comprehensive enrichment of the sales model with accuracy-proven features. The ability to calculate accurate metrics provides a quantifiable assessment of the impact of external features on the performance of machine learning models. In our ongoing project, we rigorously evaluate Upgini's influence on improving machine learning model accuracy. Through systematic testing and leveraging Upgini's unique features, including automated feature generation, we anticipate witnessing substantial enhancements in accuracy metrics and uplifts. **This project not only serves as a testament to Upgini's potential but strategically positions us to harness its capabilities for ongoing improvements in our machine learning-based sales forecasting processes.**
+Upgini, currently in its beta stage, offers a powerful tool for improving machine learning pipelines. It includes a Python library and a smart data search engine designed to make the process easier. The platform brings together data from different sources, including public, community-shared, and premium providers, to help users find what they need. It uses advanced techniques like Large Language Models' data augmentation, RNNs, and GraphNN to generate features automatically, improving the accuracy of machine learning models.
+
+One of Upgini's strengths is its ability to enhance sales prediction models. By automatically discovering features and adding details like postal codes, it enriches the sales model with proven accuracy. It also calculates metrics accurately, giving users a clear understanding of how external features affect model performance. Our ongoing project aims to test Upgini thoroughly and see how it improves model accuracy. By leveraging its unique features, including automated feature generation, we expect to see significant improvements. **This project not only shows Upgini's potential but also sets us up to use it for future enhancements in our sales forecasting processes.**
 
 
 ## Work Flow
-#### Data 
+### Data 
 The dataset provided spans a duration of 5 years and comprises sales data for 50 distinct items across 10 different stores. Each record in the dataset represents a unique combination of an item and a store, capturing the historical sales information over the specified time period. The dataset includes various features such as the item identifier, store identifier, and corresponding sales figures. [access the data](https://www.kaggle.com/competitions/demand-forecasting-kernels-only/overview)
 ![dataset](https://github.com/Idam-Bali-Haryono/Machine-Learning-Project-1/assets/115137963/d2585005-4f74-44ec-9e67-8afbfe411fb8)
 ![dataset2](https://github.com/Idam-Bali-Haryono/Machine-Learning-Project-1/assets/115137963/8082e256-59a9-426e-bb6c-6b39db302334)
 
 
 
-#### Data Preparation
+### Data Preparation
 ```python
 
 df_sample = df.sample(n=9_000, random_state=0)
@@ -45,7 +50,7 @@ test_target = test['sales']
 
 Here, we divides df_sample into training and testing sets based on a specified date threshold, creating separate sets of features (excluding the 'sales' column) and corresponding target variables for both training and testing datasets.
 
-#### Upgini
+### Upgini
 ``` python
 %pip install -Uq upgini
 from upgini import FeaturesEnricher, SearchKey
@@ -66,7 +71,7 @@ Here, we utilizes the upgini library to create and train a FeaturesEnricher inst
 ![upgini](https://github.com/Idam-Bali-Haryono/Machine-Learning-Project-1/assets/115137963/f9e30a22-9b4c-47a6-a2ce-47e20ea44428)
 
 
-#### Catboost 
+### Catboost 
 
 
 CatBoost is a high-performance, open-source gradient boosting library designed for efficient machine learning on tabular data. Notable for its excellent handling of categorical features, CatBoost requires minimal preprocessing, supports GPU acceleration, and provides built-in features for preventing overfitting. It is user-friendly and widely used for regression and classification tasks.
